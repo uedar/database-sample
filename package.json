@@ -29,7 +29,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://uedar.github.io/react-app",
+  "homepage": "https://uedar.github.io/react-ts",
   "browserslist": {
     "production": [
       ">0.2%",
