@@ -1,13 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import AtomsDetail from './AtomsDetail';
+import AtomsList from './AtomsList';
+import {
+  BrowserRouter,
+  Route,
+  useParams,
+  Routes,
+  Link,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-  </div>
-  );
+
+class App extends React.Component {
+  render(): React.ReactNode {
+    return (
+
+      <BrowserRouter>
+        <h1>Sample Database Page</h1>
+        <Routes>
+          <Route path="/" element={<AtomsList />}>
+          </Route>
+          <Route path="/:id" element={<AtomsDetail />} />
+        </Routes>
+      </BrowserRouter >
+
+    )
+  }
+
 }
-
 export default App;
