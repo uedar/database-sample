@@ -21,7 +21,8 @@ jobs:
 
       - name: Build
         run: |
+          git config --global user.email "u483198f@gmail.com" 
+          git config --global user.name "Ryo Ueda"
           yarn deploy
         env:
           CI: false
-        
