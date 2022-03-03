@@ -1,4 +1,5 @@
 import React from 'react';
+import { DataGrid } from '@material-ui/data-grid';
 import './App.css';
 import { Metadata } from './Metadata'
 import {
@@ -14,39 +15,59 @@ interface AtomsProps {
 }
 
 
-const DisplayData = Metadata.map((atoms, index) => {
+const columns = [
+    { field: 'id', headerName: 'ID', width: 300 },
+    {
+        field: 'name',
+        headerName: 'Name',
+        width: 150,
+        renderCell: (params: any) => {
+            console.log(params)
+            return (<Link to={params.row.id}>{params.value}</Link>)
+        }
+    },
+    {
+        field: 'type',
+        headerName: 'Type',
+        width: 150,
+    },
+    {
+        field: 'calculator',
+        headerName: 'Calculator',
+        width: 150,
+    },
+    {
+        field: 'functional',
+        headerName: 'Functional',
+        width: 150,
+    },
+    {
+        field: 'notes',
+        headerName: 'notes',
+        width: 150,
+    },
+];
+
+
+const rows = Metadata.map((atoms, index) => {
     return (
-        <tr>
-            <td><Link to={atoms.uuid}>{atoms.display_name}</Link></td>
-            <td>{atoms.type}</td>
-            <td>{atoms.calculator}</td>
-            <td>{atoms.functional}</td>
-            <td>{atoms.notes}</td>
-        </tr>
+        { id: atoms.uuid, name: atoms.display_name, type: atoms.type, calculator: atoms.calculator, functional: atoms.functional, notes: atoms.notes }
     )
 })
 
-const AtomsList = () => {
+
+function AtomsList() {
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Calculator</th>
-                        <th>Functional</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {DisplayData}
-                </tbody>
-            </table>
-
-        </div >
-
-    )
-
+        <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSize={5}
+                checkboxSelection
+                disableSelectionOnClick
+            />
+        </div>
+    );
 }
+
 export default AtomsList;
