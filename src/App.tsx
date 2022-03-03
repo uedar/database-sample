@@ -5,9 +5,8 @@ import AtomsList from './AtomsList';
 import {
   BrowserRouter,
   Route,
-  useParams,
   Routes,
-  Link,
+  Link
 } from "react-router-dom";
 
 
@@ -16,7 +15,7 @@ class App extends React.Component {
     return (
 
       <BrowserRouter>
-        <h1>Sample Database Page</h1>
+        <h1><Link to="/database-sample">Database Page</Link></h1>
         <Routes>
           <Route path="/database-sample/" element={<AtomsList />}>
           </Route>

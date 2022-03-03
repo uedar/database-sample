@@ -1,11 +1,7 @@
 import React, { memo, useState, useEffect } from 'react'
 import './App.css';
 import {
-    BrowserRouter,
-    Route,
     useParams,
-    Routes,
-    Link,
 } from "react-router-dom";
 import { Metadata } from './Metadata'
 

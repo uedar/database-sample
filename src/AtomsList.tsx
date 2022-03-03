@@ -2,11 +2,7 @@ import React from 'react';
 import './App.css';
 import { Metadata } from './Metadata'
 import {
-    BrowserRouter,
-    Route,
-    useParams,
-    Routes,
-    Link,
+    Link
 } from "react-router-dom";
 
 interface AtomsProps {
