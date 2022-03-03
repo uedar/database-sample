@@ -21,8 +21,12 @@ jobs:
 
       - name: Build
         run: |
-          git config --global user.email "u483198f@gmail.com" 
-          git config --global user.name "Ryo Ueda"
-          yarn deploy
+          yarn build
         env:
           CI: false
+      
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
