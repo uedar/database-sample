@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import { Metadata } from './Metadata'
 import FileDownloader from './FileDownloader'
+import DetailDataCleaner from './DetailDataCleaner'
 
 type UniqueId = {
     id: string;
@@ -19,8 +20,10 @@ const AtomsDetailTable = memo(() => {
         atoms.uuid === id)
     const [detailData, setDetailData] = useState<any[]>([])
     const hundleClick = () => {
-        console.log('Download')
         FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
+    }
+    const displayCell = () => {
+        console.log(DetailDataCleaner.getCell(detailData["1"]))
     }
     const getData = () => {
         fetch(`data/${displayAtoms.detail_path}`,
@@ -42,6 +45,7 @@ const AtomsDetailTable = memo(() => {
     useEffect(() => {
         getData()
     }, [])
+
     const array = [detailData]
     return (
         <div>
@@ -68,7 +72,6 @@ const AtomsDetailTable = memo(() => {
             {array.map((item: any) => {
                 const item1: any = item["1"]
                 if (item1) {
-                    console.log(item1["calculator"])
                     return (
                         <div>
                             <h3>Calculator: {item1["calculator"]}</h3>
@@ -84,6 +87,7 @@ const AtomsDetailTable = memo(() => {
                 }
             })}
             <button onClick={() => hundleClick()}>Download</button>
+            <button onClick={() => displayCell()}>Cell</button>
         </div >
     )
 })

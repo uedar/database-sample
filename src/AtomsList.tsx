@@ -51,7 +51,14 @@ const columns = [
 
 const rows = Metadata.map((atoms, index) => {
     return (
-        { id: atoms.uuid, name: atoms.display_name, type: atoms.type, calculator: atoms.calculator, functional: atoms.functional, notes: atoms.notes }
+        {
+            id: atoms.uuid,
+            name: atoms.display_name,
+            type: atoms.type,
+            calculator: atoms.calculator,
+            functional: atoms.functional,
+            notes: atoms.notes
+        }
     )
 })
 
