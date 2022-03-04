@@ -4,16 +4,24 @@ import {
     useParams,
 } from "react-router-dom";
 import { Metadata } from './Metadata'
+import FileDownloader from './FileDownloader'
 
 type UniqueId = {
     id: string;
 };
 
+
+
 const AtomsDetailTable = memo(() => {
     const { id } = useParams<UniqueId>()
+
     const displayAtoms: any = Metadata.find((atoms) =>
         atoms.uuid === id)
-    const [posts, setPosts] = useState<any[]>([])
+    const [detailData, setDetailData] = useState<any[]>([])
+    const hundleClick = () => {
+        console.log('Download')
+        FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
+    }
     const getData = () => {
         fetch(`data/${displayAtoms.detail_path}`,
             {
@@ -28,13 +36,13 @@ const AtomsDetailTable = memo(() => {
             })
             .then(function (myJson) {
                 console.log(myJson);
-                setPosts(myJson)
+                setDetailData(myJson)
             });
     }
     useEffect(() => {
         getData()
     }, [])
-    const array = [posts]
+    const array = [detailData]
     return (
         <div>
             <table>
@@ -75,7 +83,8 @@ const AtomsDetailTable = memo(() => {
                     )
                 }
             })}
-        </div>
+            <button onClick={() => hundleClick()}>Download</button>
+        </div >
     )
 })
 
