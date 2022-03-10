@@ -5,15 +5,6 @@ import {
 } from "react-router-dom";
 import { Metadata } from './Metadata'
 import FileDownloader from './FileDownloader'
-import DetailDataCleaner from './DetailDataCleaner'
-
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import CellTable from './CellTable'
 
 type UniqueId = {
@@ -28,25 +19,9 @@ const AtomsDetailTable = () => {
         atoms.uuid === id)
     const [detailData, setDetailData] = useState<any>([])
     const hundleClick = () => {
-        // FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
-        DetailDataCleaner.getCell(detailData).map((row) => {
-            // console.log(row.axis)
-        }
-        )
+        FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
     }
-    // const getData = async () => {
-    //     const response = await fetch(`data/${displayAtoms.detail_path}`,
-    //         {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Accept': 'application/json'
-    //             }
-    //         }
-    //     )
-    //     const data = await response.json()
-    //     console.log(data)
-    //     setDetailData(data["1"])
-    // }
+
     useEffect(() => {
         const data = async () => {
             const response = await fetch(`data/${displayAtoms.detail_path}`,
@@ -62,10 +37,6 @@ const AtomsDetailTable = () => {
         }
         data()
     }, []);
-    // useEffect(() => {
-    //     getData()
-    // }, [])
-    // const cell = DetailDataCleaner.getCell(detailData)
     console.log(detailData.energy)
     return (
         typeof detailData.energy != "undefined" ?
