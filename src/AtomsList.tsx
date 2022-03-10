@@ -22,7 +22,6 @@ const columns = [
         headerName: 'Name',
         width: 150,
         renderCell: (params: any) => {
-            console.log(params)
             return (<Link to={params.row.id}>{params.value}</Link>)
         }
     },

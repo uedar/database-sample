@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useEffect, createContext } from 'react'
 import './App.css';
 import {
     useParams,
@@ -14,124 +14,73 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import CellTable from './CellTable'
 
 type UniqueId = {
     id: string;
 };
 
-
-function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
-    return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-
-const AtomsDetailTable = memo(() => {
+export const DetailDataContext = createContext({} as any)
+const AtomsDetailTable = () => {
     const { id } = useParams<UniqueId>()
 
     const displayAtoms: any = Metadata.find((atoms) =>
         atoms.uuid === id)
-    const [detailData, setDetailData] = useState<any[]>([])
+    const [detailData, setDetailData] = useState<any>([])
     const hundleClick = () => {
-        FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
-    }
-    const displayCell = () => {
-        console.log(DetailDataCleaner.getCell(detailData["1"]))
-    }
-    const getData = () => {
-        fetch(`data/${displayAtoms.detail_path}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            }
+        // FileDownloader.downloadJSon(detailData, `${displayAtoms.uuid}.json`)
+        DetailDataCleaner.getCell(detailData).map((row) => {
+            // console.log(row.axis)
+        }
         )
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                console.log(myJson);
-                setDetailData(myJson)
-            });
     }
+    // const getData = async () => {
+    //     const response = await fetch(`data/${displayAtoms.detail_path}`,
+    //         {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Accept': 'application/json'
+    //             }
+    //         }
+    //     )
+    //     const data = await response.json()
+    //     console.log(data)
+    //     setDetailData(data["1"])
+    // }
     useEffect(() => {
-        getData()
-    }, [])
-
-    const array = [detailData]
-    return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Calculator</th>
-                        <th>Functional</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{displayAtoms.display_name}</td>
-                        <td>{displayAtoms.type}</td>
-                        <td>{displayAtoms.calculator}</td>
-                        <td>{displayAtoms.functional}</td>
-                        <td>{displayAtoms.notes}</td>
-                    </tr>
-                </tbody>
-            </table>
-            {array.map((item: any) => {
-                const item1: any = item["1"]
-                if (item1) {
-                    return (
-                        <div>
-                            <h3>Energy: {item1["energy"]}</h3>
-                        </div>
-                    )
+        const data = async () => {
+            const response = await fetch(`data/${displayAtoms.detail_path}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
                 }
-            })}
-            {/* <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
-            <button onClick={() => hundleClick()}>Download</button>
-        </div >
+            )
+            const data = await response.json();
+            await setDetailData(data["1"])
+        }
+        data()
+    }, []);
+    // useEffect(() => {
+    //     getData()
+    // }, [])
+    // const cell = DetailDataCleaner.getCell(detailData)
+    console.log(detailData.energy)
+    return (
+        typeof detailData.energy != "undefined" ?
+            <div>
+                <DetailDataContext.Provider value={detailData}>
+                    {/* <h3>energy: {detailData ? detailData.energy : 0}</h3> */}
+                    {<h3>energy: {detailData.energy}</h3>}
+                    <CellTable></CellTable>
+                </DetailDataContext.Provider>
+                <button onClick={() => hundleClick()}>Download</button>
+            </div>
+            : <div>a</div>
+
     )
-})
+}
 
 const AtomsDetail = () => {
     return (
