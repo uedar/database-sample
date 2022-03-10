@@ -6,6 +6,7 @@ import {
 import { Metadata } from './Metadata'
 import FileDownloader from './FileDownloader'
 import CellTable from './CellTable'
+import Three from './Three'
 
 type UniqueId = {
     id: string;
@@ -47,6 +48,7 @@ const AtomsDetailTable = () => {
                     <CellTable></CellTable>
                 </DetailDataContext.Provider>
                 <button onClick={() => hundleClick()}>Download</button>
+                <Three></Three>
             </div>
             : <div>a</div>
 
@@ -56,6 +58,7 @@ const AtomsDetailTable = () => {
 const AtomsDetail = () => {
     return (
         <AtomsDetailTable />
+
     );
 };
 export default AtomsDetail;
