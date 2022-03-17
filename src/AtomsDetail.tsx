@@ -50,7 +50,7 @@ const AtomsDetailTable = () => {
                 <button onClick={() => hundleClick()}>Download</button>
 
             </div>
-            : <div>a</div>
+            : <div></div>
 
     )
 }
