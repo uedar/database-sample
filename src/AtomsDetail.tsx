@@ -38,7 +38,6 @@ const AtomsDetailTable = () => {
         }
         data()
     }, []);
-    console.log(detailData.energy)
     return (
         typeof detailData.energy != "undefined" ?
             <div>
@@ -46,9 +45,10 @@ const AtomsDetailTable = () => {
                     {/* <h3>energy: {detailData ? detailData.energy : 0}</h3> */}
                     {<h3>energy: {detailData.energy}</h3>}
                     <CellTable></CellTable>
+                    <Three></Three>
                 </DetailDataContext.Provider>
                 <button onClick={() => hundleClick()}>Download</button>
-                <Three></Three>
+
             </div>
             : <div>a</div>
 

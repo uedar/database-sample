@@ -30,7 +30,6 @@ const CellTable = () => {
                 <TableBody>
                     {cell.map((row) => (
                         <TableRow>
-                            {/* {detailData !== [] ? <p>a</p> : <p>n</p>} */}
                             <TableCell align="right">{row.axis}</TableCell>
                             <TableCell align="right">{row.x}</TableCell>
                             <TableCell align="right">{row.y}</TableCell>
