@@ -48,7 +48,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://uedar.github.io/#/database-sample",
+  "homepage": "https://uedar.github.io/database-sample",
   "browserslist": {
     "production": [
       ">0.2%",
