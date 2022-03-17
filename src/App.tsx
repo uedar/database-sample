@@ -21,9 +21,9 @@ class App extends React.Component {
             <Header />
           </Grid>
           <Routes>
-            <Route path="/database-sample/" element={<AtomsList />}>
+            <Route path="/" element={<AtomsList />}>
             </Route>
-            <Route path="/database-sample/:id" element={<AtomsDetail />} />
+            <Route path="/:id" element={<AtomsDetail />} />
           </Routes>
         </Grid >
       </HashRouter>
