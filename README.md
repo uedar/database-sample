@@ -5,4 +5,4 @@ $ yarn run start
 ```
 
 # Page link
-- https://uedar.github.io/database-sample/
+- https://uedar.github.io/#/database-sample/

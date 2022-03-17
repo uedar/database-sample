@@ -1,5 +1,5 @@
 {
-  "name": "database-samplea",
+  "name": "database-sample",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -48,7 +48,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://uedar.github.io/database-sample",
+  "homepage": "https://uedar.github.io/#/database-sample",
   "browserslist": {
     "production": [
       ">0.2%",
