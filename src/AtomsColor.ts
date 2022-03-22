@@ -7,7 +7,7 @@ export const AtomsColor =
             "color": "FFFFFF"
         },
         {
-            "id": 6,
+            "id": 6, 
             "name": "C",
             "radius": 0.67,
             "color": "909090"

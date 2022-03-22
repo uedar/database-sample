@@ -4,7 +4,7 @@ import AtomsDetail from './AtomsDetail'
 import AtomsList from './AtomsList'
 import Header from './components/Header'
 import {
-  HashRouter,
+  BrowserRouter,
   Route,
   Routes,
   Link
@@ -15,7 +15,7 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
 
-      <HashRouter>
+      <BrowserRouter>
         <Grid container direction="column">
           <Grid item>
             <Header />
@@ -26,7 +26,7 @@ class App extends React.Component {
             <Route path="/database-sample/:id" element={<AtomsDetail />} />
           </Routes>
         </Grid >
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 
