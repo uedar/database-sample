@@ -35,4 +35,10 @@ export default class DetailDataCleaner {
         const forcesArray: number[] = atomsJson["forces"]["__ndarray__"][2]
         return chunk(forcesArray, 3)
     }
+    public static getElements = (
+        atomsJson: any
+    ) => {
+        const speciesArray: number[] = atomsJson["numbers"]["__ndarray__"][2]
+        return speciesArray
+    }
 }
