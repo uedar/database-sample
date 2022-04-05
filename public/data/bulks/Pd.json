@@ -1,0 +1,15 @@
+{"1": {
+ "calculator": "state",
+ "calculator_parameters": {},
+ "cell": {"array": {"__ndarray__": [[3, 3], "float64", [0.0, 1.935578849458148, 1.935578849458148, 1.935578849458148, 0.0, 1.935578849458148, 1.935578849458148, 1.935578849458148, 0.0]]}, "__ase_objtype__": "cell"},
+ "ctime": 22.260054102468402,
+ "energy": -1051.6389978709562,
+ "forces": {"__ndarray__": [[1, 3], "float64", [0.0, -0.0, -0.0]]},
+ "mtime": 22.260054102468402,
+ "numbers": {"__ndarray__": [[1], "int64", [46]]},
+ "pbc": {"__ndarray__": [[3], "bool", [true, true, true]]},
+ "positions": {"__ndarray__": [[1, 3], "float64", [0.0, 0.0, 0.0]]},
+ "unique_id": "d030212eec41350edfc426ed36568cf0",
+ "user": "ueda"},
+"ids": [1],
+"nextid": 2}

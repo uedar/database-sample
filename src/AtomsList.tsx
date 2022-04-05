@@ -9,9 +9,7 @@ import {
 interface AtomsProps {
     display_name: string,
     type: string,
-    calculator: string,
-    functional: string,
-    notes: string
+    calculator: string
 }
 
 
@@ -34,17 +32,7 @@ const columns = [
         field: 'calculator',
         headerName: 'Calculator',
         width: 150,
-    },
-    {
-        field: 'functional',
-        headerName: 'Functional',
-        width: 150,
-    },
-    {
-        field: 'notes',
-        headerName: 'notes',
-        width: 150,
-    },
+    }
 ];
 
 
@@ -54,9 +42,7 @@ const rows = Metadata.map((atoms, index) => {
             id: atoms.uuid,
             name: atoms.display_name,
             type: atoms.type,
-            calculator: atoms.calculator,
-            functional: atoms.functional,
-            notes: atoms.notes
+            calculator: atoms.calculator
         }
     )
 })
