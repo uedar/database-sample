@@ -6,12 +6,6 @@ import {
     Link
 } from "react-router-dom";
 
-interface AtomsProps {
-    display_name: string,
-    type: string,
-    calculator: string
-}
-
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 300 },

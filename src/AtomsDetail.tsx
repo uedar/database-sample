@@ -8,6 +8,14 @@ import FileDownloader from './FileDownloader'
 import CellTable from './CellTable'
 import Three from './Three'
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 type UniqueId = {
     id: string;
 };
@@ -42,9 +50,45 @@ const AtomsDetailTable = () => {
         typeof detailData.energy != "undefined" ?
             <div>
                 <DetailDataContext.Provider value={detailData}>
-                    {/* <h3>energy: {detailData ? detailData.energy : 0}</h3> */}
-                    {<h3>energy: {detailData.energy}</h3>}
+                    <h1>{displayAtoms.display_name}</h1>
+                    <h2>Key and Values</h2>
+                    <TableContainer component={Paper} >
+                        <Table sx={{ minWidth: 400 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="right">key</TableCell>
+                                    <TableCell align="right">value</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {Object.keys(detailData).map((key: any, idx: any) => (
+                                    <TableRow>
+                                        <TableCell align="right">{key}</TableCell>
+                                        <TableCell align="right">{JSON.stringify(detailData[key])}</TableCell>
+                                    </TableRow>
+                                ))}
+                                {/* <TableRow>
+                                    <TableCell align="right">Energy</TableCell>
+                                    <TableCell align="right">{detailData.energy}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell align="right">Calculator</TableCell>
+                                    <TableCell align="right">{displayAtoms.calculator}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell align="right">Calculator parameters</TableCell>
+                                    <TableCell align="right">{JSON.stringify(detailData.calculator_parameters)}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell align="right">User</TableCell>
+                                    <TableCell align="right">{detailData.user}</TableCell>
+                                </TableRow> */}
+                            </TableBody>
+                        </Table>
+                    </TableContainer >
+                    <h2>Cell</h2>
                     <CellTable></CellTable>
+                    <h2>Structure</h2>
                     <Three></Three>
                 </DetailDataContext.Provider>
                 <button onClick={() => hundleClick()}>Download</button>
