@@ -11,7 +11,7 @@ import { AtomsColors } from "./AtomsColor";
 const Thing = (props: any) => {
     const ref = useRef({} as Mesh);
     const color = AtomsColors.find((a) => a.id == props.element)?.color
-    const radius = AtomsColors.find((a) => a.id == props.element)?.radius
+    const radius: number = AtomsColors.find((a) => a.id == props.element)?.radius!!
     const [hovered, setHover] = useState(false)
     const hover = (e: any) => {
         console.log('hover')
@@ -29,7 +29,7 @@ const Thing = (props: any) => {
             onMouseLeave={unhover}
         >
 
-            <sphereGeometry args={[radius, 10, 36]} />
+            <sphereGeometry args={[radius * 0.5, 10, 36]} />
             <meshBasicMaterial
                 attach="material"
                 color={color}
@@ -53,7 +53,7 @@ const Three: React.FC = React.memo(() => {
     return (
         <div style={{ width: "50vw", height: "50vh" }}>
 
-            <Canvas camera={{ position: positions[0] }}>
+            <Canvas>
                 {positions.map((p: number[], index: number) => (
                     <Thing position={p} element={elements[index]} ></Thing>
                 )
