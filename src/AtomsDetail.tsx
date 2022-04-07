@@ -51,7 +51,7 @@ const AtomsDetailTable = () => {
             <div>
                 <DetailDataContext.Provider value={detailData}>
                     <h1>{displayAtoms.display_name}</h1>
-                    <h2>Key and Values</h2>
+                    <h2>Key and Value</h2>
                     <TableContainer component={Paper} >
                         <Table sx={{ minWidth: 400 }} aria-label="simple table">
                             <TableHead>
